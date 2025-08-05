@@ -1,0 +1,55 @@
+# ----------------------------------------
+# Node.js (backend e ferramentas gerais)
+# ----------------------------------------
+**/node_modules/
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/pnpm-debug.log*
+**/.pnpm-store/
+**/package-lock.json
+**/yarn.lock
+
+# ----------------------------------------
+# Vite + React (frontend)
+# ----------------------------------------
+**/dist/
+**/.vite/
+**/.cache/
+**/coverage/
+**/.env
+**/.env.*.local
+
+# ----------------------------------------
+# Express / Node API (backend)
+# ----------------------------------------
+**/build/
+**/.env
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+
+# ----------------------------------------
+# IDEs e editores
+# ----------------------------------------
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# ----------------------------------------
+# Arquivos de sistema
+# ----------------------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------------------
+# Outros arquivos temporários
+# ----------------------------------------
+*.log
+*.tmp
+*.swp
+*.bak
+*.tsbuildinfo
+*.tgz
