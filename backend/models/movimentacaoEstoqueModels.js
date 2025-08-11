@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+
 const movimentoSchema = new mongoose.Schema({
     produto: { type: mongoose.Schema.Types.ObjectId, ref: 'Produto', required: true },
     tipo: { type: String, enum: ['entrada', 'saida'], required: true },

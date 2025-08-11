@@ -1,9 +1,14 @@
 const express = require("express");
-const userControllers = require("../controllers/userControllers");
-const userRoutes = express.Router();
+const router = express.Router();
+const usuarioController = require("../controllers/userControllers");
 
-userRoutes.post("/auth/register", userControllers.create);
-userRoutes.post("/auth/login", userControllers.autentica);
-userRoutes.get('/', userControllers.test);
+// Teste da API
+router.get("/", usuarioController.test);
 
-module.exports = userRoutes;
+// Criar usuário
+router.post("/registrar", usuarioController.create);
+
+// Autenticar usuário
+router.post("/login", usuarioController.autentica);
+
+module.exports = router;
