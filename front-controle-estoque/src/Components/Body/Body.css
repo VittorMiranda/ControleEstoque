@@ -1,0 +1,21 @@
+main {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+  
+.side {
+    width: 30%;
+    background-color: rgb(59, 103, 223);
+    color: white;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+  
+.principal {
+    flex: 1;
+    background-color: rgb(60, 165, 46);
+    color: white;
+    padding: 10px;
+}
+  

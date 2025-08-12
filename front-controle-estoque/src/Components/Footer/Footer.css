@@ -1,0 +1,17 @@
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-principal);
+    background-color: var(--cor-amarelo);
+}
+.footer img {
+    width: 30px;
+}
+
+.footer a {
+    color: var(--cor-azul-escuro);
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+}

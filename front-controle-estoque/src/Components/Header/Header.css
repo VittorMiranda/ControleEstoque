@@ -2,13 +2,32 @@
     display: flex;
     align-items: center; /* alinha verticalmente */
     justify-content: space-between; /* espaço entre os itens */
-    padding: 10px 20px;
-    background-color: #ffd905;
+    padding: 5px 10px;
+    background-color: var(--cor-amarelo);
+}
+
+.header div {
+    display: flex;
+    flex-direction: column;
+}
+
+.header div div {
+    display: flex;
+    flex-direction: row;    
 }
   
 .header img {
-    height: 50px; /* define altura da imagem */
+    height: 30px; /* define altura da imagem */
     width: auto;  /* mantém proporção */
     object-fit: contain; /* garante que não distorça */
+    margin-top: 0.5em;
+}
+
+.header a {
+    margin: 0.5em;
+    font-family: var(--fonte-principal);
+    font-weight: 600;
+    color: var(--cor-azul-escuro);
+  
 }
   

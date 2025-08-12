@@ -1,0 +1,46 @@
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cor-amarelo);
+    padding: 1em;
+    width: 200px;
+    height: 25vh;
+    color: var(--cor-azul-escuro);
+    border-radius: 5%;
+    font-family: var(--fonte-principal);
+    margin: 1em;
+}
+
+.card img {
+    width: 50%;
+    margin-bottom: 1em;  
+}
+
+.card h3{
+    font-family: var(--fonte-titulo);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card p {
+    margin: 0.4em;
+}
+
+.card button {
+    background-color: var(--cor-azul-escuro);
+    color: var(--cor-amarelo);
+    padding: 0.5em;
+    border-radius: 5px;
+    font-weight: 600;
+    border: none;
+}
+
+.card button:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: box-shadow 0.3s ease;      
+}

@@ -1,1 +1,13 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    /* Variáveis de cores */
+    --cor-azul-escuro: #0C3854;
+    --cor-azul-claro: #2472A2;
+    --cor-azul-esverdeado: #30929A;
+    --cor-amarelo: #FFB239;
+  
+    /* Variáveis de fontes */
+    --fonte-principal: 'Roboto, sans-serif';
+    --fonte-titulo: 'Roboto Mono, serif';
+  }
+  
