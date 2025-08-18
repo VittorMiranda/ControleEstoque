@@ -1,4 +1,4 @@
-import Card from '../Card';
+import Forms from '../Forms';
 import './Body.css';
 
 const Body = () => {
@@ -8,7 +8,9 @@ const Body = () => {
 
             </div>
             <div className='principal'>
-                <Card/>  
+                <Forms></Forms>
+        
+               
             </div>
         </main>
     );

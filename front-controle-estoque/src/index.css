@@ -47,11 +47,18 @@ table {
 }
 
 :root {
-  /* Variáveis de cores */
+  /* Variáveis de cores HEX*/
   --cor-azul-escuro: #0C3854;
   --cor-azul-claro: #2472A2;
   --cor-azul-esverdeado: #30929A;
   --cor-amarelo: #FFB239;
+  --cor-branca:#F9F9F9;
+
+    /* Variáveis de cores em RGB */
+    --cor-azul-escuro-rgb: 12, 56, 84;   /* #0C3854 */
+    --cor-azul-claro-rgb: 36, 114, 162;  /* #2472A2 */
+    --cor-azul-esverdeado-rgb: 48, 146, 154; /* #30929A */
+    --cor-amarelo-rgb: 255, 178, 57;     /* #FFB239 */
 
   /* Variáveis de fontes */
   --fonte-principal: 'Roboto, sans-serif';

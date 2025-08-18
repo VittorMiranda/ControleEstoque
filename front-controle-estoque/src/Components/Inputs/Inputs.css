@@ -1,0 +1,17 @@
+.input {
+    width: 50%;
+    max-width: 500px;
+    min-width: 300px;
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid var(--cor-azul-esverdeado);
+    border-radius: 6px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(var(--cor-azul-escuro) 0.1); /* sombra leve padrão */
+}
+  
+.input:focus {
+    border-color: var(--cor-amarelo);
+    box-shadow: 0 0 8px rgba(var(--cor-azul-claro-rgb), 0.1);
+}

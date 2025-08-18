@@ -7,7 +7,6 @@ const Card = () => {
             <h3>Coca-cola 2L</h3>
             <p>R$ 8,99</p>
             <p>360 UN</p>
-            <button>Detalhes</button>
         </div>
     );
 }

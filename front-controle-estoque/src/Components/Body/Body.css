@@ -1,21 +1,36 @@
-main {
+.corpo {
     display: flex;
     flex-direction: row;
     height: 100vh;
 }
   
 .side {
-    width: 30%;
-    background-color: rgb(59, 103, 223);
+    width: 25%;
     color: white;
     padding: 10px;
     transition: all 0.3s ease;
+    border-right: 1px solid var(--cor-amarelo);
 }
   
 .principal {
     flex: 1;
-    background-color: rgb(60, 165, 46);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     color: white;
     padding: 10px;
+    
+}
+
+@media (min-width: 1000px) {
+    .side {
+      width: 20%;
+    }
 }
   
+@media (min-width: 1600px) {
+    .side {
+      width: 15%;
+    }
+}
