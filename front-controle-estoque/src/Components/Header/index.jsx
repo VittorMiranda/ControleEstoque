@@ -1,19 +1,45 @@
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
+import logo from '../../assets/logo-Photoroom.png';
+import { useState, useEffect } from 'react';
+import { getToken, logout } from '../../Services/auth';
+import Button from '../Button'
 
 const Header = () => {
-    return (
-        <header className='header'>
-            <img src="../src/assets/logo-Photoroom.png" alt="" /> 
-            <div>
-            <img width="96" height="96" src="https://img.icons8.com/color/96/test-account.png" alt="test-account"/>
-                <div>
-                    <a href="">Sing-in</a>
-                    <a href="">Sing-up</a>
-                </div>                
-            </div> 
-      
-        </header>
-    );
-}
+  const [userName, setUserName] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const usuario = JSON.parse(localStorage.getItem('usuario'));
+    if (usuario && usuario.nome) setUserName(usuario.nome);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+    setUserName(null);
+    navigate('/signin');
+  };
+
+  return (
+    <header className='header'>
+      <img src={logo} alt="Logo" />
+        <div className="auth-links">
+          {userName ? (
+            <>
+              <span>Olá, {userName}!</span>
+              <Button onClick={handleLogout} text={"Sair"}/>
+            </>
+          ) : (
+            <>
+              <Link to="/signin">Sign-in</Link>
+              <Link to="/signup">Sign-up</Link>
+            </>
+          )}
+        </div>
+ 
+    </header>
+  );
+};
 
 export default Header;

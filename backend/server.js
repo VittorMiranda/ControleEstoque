@@ -31,7 +31,7 @@ const movimentacaoRoutes = require("./routes/movimentacaoRoutes");
 app.use("/movimentacao", movimentacaoRoutes);
 
 const produtoRoutes = require("./routes/produtoRoutes");
-app.use("/produto", produtoRoutes);
+app.use("/produtos", produtoRoutes);
 
 
 

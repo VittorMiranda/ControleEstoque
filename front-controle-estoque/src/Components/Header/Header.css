@@ -1,21 +1,12 @@
 .header {
     display: flex;
+    flex-direction: row;
     align-items: center; /* alinha verticalmente */
     justify-content: space-between; /* espaço entre os itens */
     padding: 5px 10px;
     background-color: var(--cor-amarelo);
 }
-
-.header div {
-    display: flex;
-    flex-direction: column;
-}
-
-.header div div {
-    display: flex;
-    flex-direction: row;    
-}
-  
+ 
 .header img {
     height: 30px; /* define altura da imagem */
     width: auto;  /* mantém proporção */
@@ -23,11 +14,17 @@
     margin-top: 0.5em;
 }
 
-.header a {
-    margin: 0.5em;
+.header a, .header span{
     font-family: var(--fonte-principal);
     font-weight: 600;
     color: var(--cor-azul-escuro);
   
+}
+.auth-links{
+    margin: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
   

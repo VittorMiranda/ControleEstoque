@@ -1,14 +1,22 @@
 import './Card.css';
+import placeholderImg from '../../assets/placeholder.png';
 
-const Card = () => {
-    return(
-        <div className='card'>
-            <img src="../src/assets/b-71f36ba768144c7ab57a0cc15447b73a.png" alt="" />
-            <h3>Coca-cola 2L</h3>
-            <p>R$ 8,99</p>
-            <p>360 UN</p>
-        </div>
-    );
+const Card = ({ produto }) => {
+  const imagem = produto?.imagemUrl || placeholderImg;
+
+  // Conversão correta do Decimal128
+  const precoVenda = produto?.precoVenda
+    ? parseFloat(produto.precoVenda.toString())
+    : '0.00';
+
+  return (
+    <div className='card'>
+      <img src={imagem} alt={produto?.nome || 'Produto'} />
+      <h3>{produto?.nome || 'Produto'}</h3>
+      <p>R$ {precoVenda}</p>
+      <p>{produto?.quantidade || 0} {produto?.unidade || 'un'}</p>
+    </div>
+  );
 }
 
 export default Card;

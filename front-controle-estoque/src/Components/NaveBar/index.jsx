@@ -1,13 +1,16 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import Button from "../Button"; // seu componente Button
 import './NaveBar.css';
 
 const NaveBar = () => {
+  const navigate = useNavigate();
+
   return (
     <nav className='navegacao'>
-      <Link to="/">Home</Link>
-      <Link to="/produto">Produto</Link>
-      <Link to="/categoria">Categoria</Link>
-      <Link to="/fornecedor">Fornecedor</Link>
+      <Button text="Home" onClick={() => navigate("/")} />
+      <Button text="Produto" onClick={() => navigate("/produto")} />
+      <Button text="Categoria" onClick={() => navigate("/categoria")} />
+      <Button text="Fornecedor" onClick={() => navigate("/fornecedor")} />
     </nav>
   );
 }

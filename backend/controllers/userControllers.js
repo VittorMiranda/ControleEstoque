@@ -73,8 +73,11 @@ exports.autentica = async (req, res) => {
 
         res.status(200).json({
             msg: "Autenticação realizada com sucesso",
-            token
+            token,
+            nome: usuario.nome,
+            email: usuario.email
         });
+
 
     } catch (error) {
         res.status(500).json({ erro: error.message });

@@ -1,8 +1,8 @@
 .btn {
     width: 60%;
     max-width: 250px;
-    margin-top: 20px;
-    padding: 12px;
+    margin: 10px;
+    padding: 10px;
     border: none;
     border-radius: 6px;
     background-color: var(--cor-azul-esverdeado);
