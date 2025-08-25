@@ -1,15 +1,19 @@
-.button {
-    background-color: var(--cor-azul-escuro);
-    color: var(--cor-amarelo);
-    padding: 0.5em;
-    border-radius: 5px;
-    font-weight: 600;
+.btn {
+    width: 60%;
+    max-width: 250px;
+    margin-top: 20px;
+    padding: 12px;
     border: none;
+    border-radius: 6px;
+    background-color: var(--cor-azul-esverdeado);
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.button:hover{
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transform: scale(1.05);
-    transition: box-shadow 0.3s ease;      
+.btn:hover {
+    background-color: var(--cor-azul-escuro);
+    transform: scale(1.03);
 }

@@ -1,11 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
+
+
 require("dotenv").config();
 
 const app = express();
 
 // Middleware para JSON
 app.use(express.json());
+
+app.use(cors()); // habilita CORS para todas as origens
 
 // Conexão com o MongoDB
 mongoose.connect(process.env.MONGO_URI)

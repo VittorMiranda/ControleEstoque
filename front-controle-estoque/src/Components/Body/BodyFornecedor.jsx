@@ -1,19 +1,14 @@
-import FormCategoria from '../Forms/FormsCategoria';
 import FormFornecedor from '../Forms/FormsFornecedor';
-import FormProduto from '../Forms/FormsProduto';
 import './Body.css';
 
-const Body = () => {
+const BodyFornecedor = () => {
     return(
         <main className='corpo'>
             <div className='principal'>
-                <Card/>
-
-        
-               
+                <FormFornecedor></FormFornecedor>
             </div>
         </main>
     );
 }
 
-export default Body;
+export default BodyFornecedor;

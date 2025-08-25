@@ -48,3 +48,14 @@ exports.deletar = async (req, res) => {
         res.status(500).json({ erro: err.message });
     }
 };
+
+exports.listar = async (req, res) => {
+    try {
+        // retorna apenas _id e nome
+        const categorias = await Categoria.find({}, "_id nome");
+        res.json(categorias);
+    } catch (err) {
+        res.status(500).json({ erro: err.message });
+    }
+};
+
