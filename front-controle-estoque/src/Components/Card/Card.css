@@ -14,10 +14,6 @@
     margin: 1em;
 }
 
-.card img {
-    width: 50%;
-    margin-bottom: 1em;  
-}
 
 .card h3{
     font-family: var(--fonte-titulo);
@@ -28,6 +24,30 @@
 .card p {
     margin: 0.4em;
 }
+
+.icons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    margin: 0.2em;
+    fill: var(--cor-azul-escuro);
+}
+
+.card > img {
+  width: 50%;
+  margin-bottom: 1em;
+}
+
+.icons img{
+  width: 20px;
+  height: 20px;
+  fill: var(--cor-azul-escuro);
+  cursor: pointer;
+}
+
 
 .card button {
     background-color: var(--cor-azul-escuro);
@@ -44,3 +64,4 @@
     transform: scale(1.05);
     transition: box-shadow 0.3s ease;      
 }
+

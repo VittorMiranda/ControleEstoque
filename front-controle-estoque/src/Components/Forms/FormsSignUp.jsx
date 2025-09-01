@@ -10,6 +10,7 @@ const FormsSignUp = () => {
     nome: "",
     email: "",
     senha: "",
+    confirmaSenha:"",
   });
 
   const handleChange = (e) => {
@@ -18,25 +19,32 @@ const FormsSignUp = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:3000/usuarios/registrar", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(usuario),
-      });
+  e.preventDefault();
 
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.msg || "Erro ao cadastrar usuário");
-      }
+  if (usuario.senha !== usuario.confirmaSenha) {
+    alert("As senhas não coincidem!");
+    return;
+  }
 
-      alert("Cadastro realizado com sucesso!");
-      navigate("/"); // Redireciona para login
-    } catch (err) {
-      alert(err.message);
+  try {
+    const res = await fetch("http://localhost:3000/usuarios/registrar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(usuario),
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw new Error(errorData.msg || "Erro ao cadastrar usuário");
     }
-  };
+
+    alert("Cadastro realizado com sucesso!");
+    navigate("/");
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
 
   return (
     <form className="form" onSubmit={handleSubmit}>
@@ -45,6 +53,9 @@ const FormsSignUp = () => {
       <Inputs label="Nome" name="nome" value={usuario.nome} onChange={handleChange} />
       <Inputs label="Email" name="email" value={usuario.email} onChange={handleChange} />
       <Inputs label="Senha" type="password" name="senha" value={usuario.senha} onChange={handleChange} />
+      <Inputs label="Confirmar Senha" type="password" name="confirmaSenha" value={usuario.confirmaSenha} onChange={handleChange}
+/>
+
 
       <Button text="Cadastrar" type="submit" />
 

@@ -3,7 +3,7 @@ import Inputs from "../Inputs";
 import Button from "../Button";
 import './Forms.css';
 
-const Forms = () => {
+const Forms = ({ produtoEdit, produtoId }) => {
   const [produto, setProduto] = useState({
     nome: "",
     descricao: "",
@@ -23,6 +23,8 @@ const Forms = () => {
   const [fornecedores, setFornecedores] = useState([]);
 
   useEffect(() => {
+    if (produtoEdit) setProduto(produtoEdit); // preenche se estiver editando
+
     fetch("http://localhost:3000/categoria")
       .then(res => res.json())
       .then(data => setCategorias(data))
@@ -32,7 +34,8 @@ const Forms = () => {
       .then(res => res.json())
       .then(data => setFornecedores(data))
       .catch(err => console.error("Erro ao buscar fornecedores:", err));
-  }, []);
+  }, [produtoEdit]);
+
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -42,39 +45,44 @@ const Forms = () => {
 const handleSubmit = (e) => {
   e.preventDefault();
 
-  fetch("http://localhost:3000/produto", {
-    method: "POST",
+  const method = produtoId ? "PUT" : "POST";
+  const url = produtoId ? `http://localhost:3000/produtos/${produtoId}` : "http://localhost:3000/produto";
+
+  fetch(url, {
+    method,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(produto)
   })
     .then(res => res.json())
     .then(data => {
-      alert("Produto cadastrado com sucesso!");
-      console.log(data);
-
-      // 🔹 Resetar o formulário
-      setProduto({
-        nome: "",
-        descricao: "",
-        codigoBarras: "",
-        categoria: "",
-        fornecedor: "",
-        quantidade: 0,
-        unidade: "",
-        precoCompra: "",
-        precoVenda: "",
-        dataValidade: "",
-        imagemUrl: "",
-        ativo: true
-      });
+      alert(produtoId ? "Produto atualizado!" : "Produto cadastrado!");
+      
+      if (!produtoId) {
+        // reset apenas no cadastro
+        setProduto({
+          nome: "",
+          descricao: "",
+          codigoBarras: "",
+          categoria: "",
+          fornecedor: "",
+          quantidade: 0,
+          unidade: "",
+          precoCompra: "",
+          precoVenda: "",
+          dataValidade: "",
+          imagemUrl: "",
+          ativo: true
+        });
+      }
     })
     .catch(err => console.error("Erro:", err));
 };
 
 
+
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <h3>Cadastro de Produtos</h3>
+      <h3>{produtoId ? "Editar Produto" : "Cadastro de Produtos"}</h3>
 
       <Inputs label="Nome" name="nome" value={produto.nome} onChange={handleChange} />
       <Inputs label="Descrição" name="descricao" value={produto.descricao} onChange={handleChange} />
@@ -132,7 +140,7 @@ const handleSubmit = (e) => {
         </label>
       </div>
 
-      <Button text="Cadastrar Produto" type="submit" />
+      <Button text={produtoId ? "Atualizar Produto" : "Cadastrar Produto"} type="submit" />
     </form>
   );
 };

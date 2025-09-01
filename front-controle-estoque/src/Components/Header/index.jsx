@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <header className='header'>
       <img src={logo} alt="Logo" />
-        <div className="auth-links">
+        <div className="auth-links" key={userName}>
           {userName ? (
             <>
               <span>Olá, {userName}!</span>

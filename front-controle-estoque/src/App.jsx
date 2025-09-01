@@ -59,6 +59,7 @@ function App() {
           }
         >
           <Route path="/home" element={<BodyHome />} />
+          <Route path="/produto/editar/:id" element={<BodyProdutos />} />
           <Route path="/produto" element={<BodyProdutos />} />
           <Route path="/categoria" element={<BodyCategoria />} />
           <Route path="/fornecedor" element={<BodyFornecedor />} />
