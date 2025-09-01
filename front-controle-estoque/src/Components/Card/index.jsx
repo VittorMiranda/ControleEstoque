@@ -8,7 +8,7 @@ const Card = ({ produto, onDelete }) => {
   const navigate = useNavigate();
   const imagem = produto?.imagemUrl || placeholderImg;
   const precoVenda = produto?.precoVenda
-    ? parseFloat(produto.precoVenda.toString())
+    ? parseFloat(produto.precoVenda.toString()).toFixed(2)
     : '0.00';
 
   const handleEdit = () => {
@@ -28,11 +28,36 @@ const Card = ({ produto, onDelete }) => {
       
       <img src={imagem} alt={produto?.nome || 'Produto'} />
       <h3>{produto?.nome || 'Produto'}</h3>
-      <p>R$ {precoVenda}</p>
+
+      <h4>Descrição:</h4>
+      <p className="scrollable-text">{produto?.descricao || '-'}</p>
+
+      <h4>Código de Barras:</h4>
+      <p>{produto?.codigoBarras || '-'}</p>
+
+      <h4>Categoria:</h4>
+      <p>{produto?.categoria?.nome || '-'}</p>
+
+      <h4>Fornecedor:</h4>
+      <p>{produto?.fornecedor?.nome || '-'}</p>
+
+      <h4>Quantidade:</h4>
       <p>{produto?.quantidade || 0} {produto?.unidade || 'un'}</p>
+
+      <h4>Preço de Venda:</h4>
+      <p>R$ {precoVenda}</p>
+
+      {produto?.dataValidade && (
+        <>
+          <h4>Validade:</h4>
+          <p>{produto.dataValidade.split('T')[0]}</p>
+        </>
+      )}
+
+      <h4>Status:</h4>
+      <p>{produto.ativo ? 'Ativo' : 'Inativo'}</p>
     </div>
   );
 }
-
 
 export default Card;

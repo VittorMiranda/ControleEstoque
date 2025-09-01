@@ -21,10 +21,15 @@
   
 }
 .auth-links{
+    width: 50%;
     margin: 0.5em;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
+}
+
+.auth-links Button {
+    max-width: 30%;
 }
   

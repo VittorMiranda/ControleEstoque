@@ -1,43 +1,45 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 import logo from '../../assets/logo-Photoroom.png';
-import { useState, useEffect } from 'react';
-import { getToken, logout } from '../../Services/auth';
-import Button from '../Button'
+import { useAuth } from '../../Contexts/AuthContext';
+import Button from '../Button';
 
 const Header = () => {
-  const [userName, setUserName] = useState(null);
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const usuario = JSON.parse(localStorage.getItem('usuario'));
-    if (usuario && usuario.nome) setUserName(usuario.nome);
-  }, []);
-
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('usuario');
-    setUserName(null);
+    logout();
     navigate('/signin');
+  };
+
+  const handleLogoClick = () => {
+    navigate('/home');
   };
 
   return (
     <header className='header'>
-      <img src={logo} alt="Logo" />
-        <div className="auth-links" key={userName}>
-          {userName ? (
-            <>
-              <span>Olá, {userName}!</span>
-              <Button onClick={handleLogout} text={"Sair"}/>
-            </>
-          ) : (
-            <>
-              <Link to="/signin">Sign-in</Link>
-              <Link to="/signup">Sign-up</Link>
-            </>
-          )}
-        </div>
- 
+      {/* Logo clicável */}
+      <img 
+        src={logo} 
+        alt="Logo" 
+        style={{ cursor: 'pointer' }}
+        onClick={handleLogoClick}
+      />
+
+      <div className="auth-links">
+        {user ? (
+          <>
+            <span>Olá, {user.nome}!</span>
+            <Button onClick={handleLogout} text="Sair" />
+          </>
+        ) : (
+          <>
+            <Link to="/signin">Sign-in</Link>
+            <Link to="/signup">Sign-up</Link>
+          </>
+        )}
+      </div>
     </header>
   );
 };

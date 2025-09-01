@@ -9,8 +9,8 @@ router.get("/", categoriaController.listar);
 router.get("/:id", categoriaController.buscarPorId);
 
 // Rotas que somente admin pode acessar
-router.post("/", categoriaController.criar);
-router.put("/:id", categoriaController.atualizar);
-router.delete("/:id",  categoriaController.deletar);
+router.post("/", authenticateJWT, authorize(['admin']), categoriaController.criar);
+router.put("/:id", authenticateJWT, authorize(['admin']), categoriaController.atualizar);
+router.delete("/:id",  authenticateJWT, authorize(['admin']), categoriaController.deletar);
 
 module.exports = router;

@@ -7,7 +7,6 @@ const NaveBar = () => {
 
   return (
     <nav className='navegacao'>
-      <Button text="Home" onClick={() => navigate("/")} />
       <Button text="Produto" onClick={() => navigate("/produto")} />
       <Button text="Categoria" onClick={() => navigate("/categoria")} />
       <Button text="Fornecedor" onClick={() => navigate("/fornecedor")} />

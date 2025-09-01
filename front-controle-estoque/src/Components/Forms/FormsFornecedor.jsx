@@ -1,9 +1,12 @@
 import { useState } from "react";
 import Inputs from "../Inputs";
 import Button from "../Button";
-import './Forms.css';;
+import './Forms.css';
+import { useAuth } from '../../Contexts/AuthContext';
+
 
 const FormFornecedor = () => {
+  const { token } = useAuth();
   const [fornecedor, setFornecedor] = useState({
     nome: "",
     cnpj: "",
@@ -35,29 +38,41 @@ const FormFornecedor = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     fetch("http://localhost:3000/fornecedor", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
       body: JSON.stringify(fornecedor)
     })
-      .then(res => res.json())
-      .then(data => {
-        alert("Fornecedor cadastrado com sucesso!");
-        console.log(data);
-
-        // Limpar formulário
-        setFornecedor({
-          nome: "",
-          cnpj: "",
-          telefone: "",
-          email: "",
-          endereco: { rua: "", numero: "", cidade: "", estado: "", cep: "" }
-        });
+      .then(res => res.json().then(data => ({ status: res.status, body: data })))
+      .then(({ status, body }) => {
+        if (status >= 200 && status < 300) {
+          alert("Fornecedor cadastrado com sucesso!");
+          console.log(body);
+  
+          // Limpar formulário
+          setFornecedor({
+            nome: "",
+            cnpj: "",
+            telefone: "",
+            email: "",
+            endereco: { rua: "", numero: "", cidade: "", estado: "", cep: "" }
+          });
+        } else {
+          // Se houver erro do backend
+          alert(body.msg || "Erro ao cadastrar fornecedor");
+          console.error("Erro do backend:", body);
+        }
       })
-      .catch(err => console.error("Erro:", err));
+      .catch(err => {
+        console.error("Erro de rede:", err);
+        alert("Erro ao conectar com o servidor.");
+      });
   };
-
+  
   return (
     <form className="form" onSubmit={handleSubmit}>
       <h3>Cadastro de Fornecedor</h3>
@@ -74,7 +89,7 @@ const FormFornecedor = () => {
       <Inputs label="Estado" name="endereco.estado" value={fornecedor.endereco.estado} onChange={handleChange} />
       <Inputs label="CEP" name="endereco.cep" value={fornecedor.endereco.cep} onChange={handleChange} />
 
-      <Button text="Cadastrar Fornecedor" type="submit" />
+      <Button text="Cadastrar" type="submit" />
     </form>
   );
 };

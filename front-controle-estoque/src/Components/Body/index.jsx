@@ -20,17 +20,27 @@ const Body = () => {
     fetchProdutos();
   }, []);
 
-  const handleDelete = async (id) => {
-    try {
-      await fetch(`http://localhost:3000/produtos/${id}`, {
-        method: 'DELETE'
-      });
-      setProdutos(prev => prev.filter(prod => prod._id !== id));
-    } catch (error) {
-      console.error(error);
-      alert('Não foi possível excluir o produto.');
-    }
-  };
+  const token = localStorage.getItem('token'); // pega o token do usuário logado
+
+const handleDelete = async (id) => {
+  try {
+    const res = await fetch(`http://localhost:3000/produtos/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // ⚠ necessário para passar o JWT
+      }
+    });
+
+    if (!res.ok) throw new Error('Não autorizado ou erro na exclusão');
+
+    setProdutos(prev => prev.filter(prod => prod._id !== id));
+  } catch (error) {
+    console.error(error);
+    alert('Não foi possível excluir o produto.');
+  }
+};
+
 
   return (
     <main className='corpo'>

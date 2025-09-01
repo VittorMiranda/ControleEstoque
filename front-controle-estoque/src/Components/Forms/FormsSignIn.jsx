@@ -1,16 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ⚠ import necessário
+import { useNavigate } from "react-router-dom";
 import Inputs from "../Inputs";
 import Button from "../Button";
-import { login } from "../../Services/auth";
+import { useAuth } from "../../Contexts/AuthContext";
 import './Forms.css';
 
 const FormsSignIn = () => {
-  const navigate = useNavigate(); // ⚠ definindo o navigate aqui
-  const [usuario, setUsuario] = useState({
-    email: "",
-    senha: "",
-  });
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [usuario, setUsuario] = useState({ email: "", senha: "" });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,15 +19,9 @@ const FormsSignIn = () => {
     e.preventDefault();
 
     try {
-      const data = await login(usuario.email, usuario.senha);
-
-      // ⚠ Salva o nome do usuário para o Header
-      if (data.nome) {
-        localStorage.setItem("usuario", JSON.stringify({ nome: data.nome }));
-      }
-
+      await login(usuario.email, usuario.senha);
       alert("Login realizado com sucesso!");
-      navigate("/home"); // ⚠ redireciona para home
+      navigate("/home");
     } catch (err) {
       alert(err.message);
     }

@@ -2,8 +2,10 @@ import { useState } from "react";
 import Inputs from "../Inputs";
 import Button from "../Button";
 import './Forms.css';
+import { useAuth } from '../../Contexts/AuthContext';
 
 const FormCategoria = () => {
+  const { token } = useAuth();
   const [categoria, setCategoria] = useState({
     nome: "",
     descricao: ""
@@ -14,24 +16,35 @@ const FormCategoria = () => {
     setCategoria({ ...categoria, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    fetch("http://localhost:3000/categoria", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(categoria)
-    })
-      .then(res => res.json())
-      .then(data => {
-        alert("Categoria cadastrada com sucesso!");
-        console.log(data);
-
-        // Limpar formulário
-        setCategoria({ nome: "", descricao: "" });
-      })
-      .catch(err => console.error("Erro:", err));
+    try {
+      const res = await fetch("http://localhost:3000/categoria", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(categoria)
+      });
+  
+      const data = await res.json();
+  
+      if (!res.ok) {
+        alert(data.msg || "Erro ao cadastrar categoria");
+        console.error("Erro do backend:", data);
+        return;
+      }
+  
+      alert("Categoria cadastrada com sucesso!");
+      setCategoria({ nome: "", descricao: "" });
+  
+    } catch (err) {
+      console.error("Erro de rede:", err);
+      alert("Erro ao conectar com o servidor.");
+    }
   };
+  
 
   return (
     <form className="form" onSubmit={handleSubmit}>
@@ -40,7 +53,7 @@ const FormCategoria = () => {
       <Inputs label="Nome" name="nome" value={categoria.nome} onChange={handleChange} />
       <Inputs label="Descrição" name="descricao" value={categoria.descricao} onChange={handleChange} />
 
-      <Button text="Cadastrar Categoria" type="submit" />
+      <Button text="Cadastrar" type="submit" />
     </form>
   );
 };
